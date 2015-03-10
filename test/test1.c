@@ -215,6 +215,5 @@ int main()
 	assert(is_valid(r));
 	estimate = clock() - estimate;
 	printf("Time taken: %.2fs\n", ((double)estimate) / CLOCKS_PER_SEC);
-	system("pause");
 	return 0;
 }
