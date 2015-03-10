@@ -5,7 +5,7 @@
 #define NDEBUG
 #include <assert.h>
 
-#define STACK_SIZE 128
+#define STACK_SIZE 64
 
 #define stack_push(zz_s, zz_sp, zz_n, zz_d) \
 	assert(zz_sp >= &zz_s[0]); \
@@ -66,8 +66,8 @@ int is_valid(node_t *root)
 		rh = is_valid(rn);
 		/* Invalid binary search tree */
 		if (
-			(ln != NULL && ln->x >= root->x)
-			|| (rn != NULL && rn->x <= root->x))
+		    (ln != NULL && ln->x >= root->x)
+		    || (rn != NULL && rn->x <= root->x))
 		{
 			puts("Binary tree violation");
 			return 0;
@@ -207,13 +207,14 @@ int main()
 
 	estimate = clock();
 	r = new_node(10, 0);
-	for (i = 0; i < 10000000; i++)
+	for (i = 0; i < 20000000; i++)
 	{
-		r = insert(r, rand());
+		//r = insert(r, rand());
+		r = insert(r, i);
 	}
 	assert(is_valid(r));
 	estimate = clock() - estimate;
 	printf("Time taken: %.2fs\n", ((double)estimate) / CLOCKS_PER_SEC);
+	system("pause");
 	return 0;
 }
-
