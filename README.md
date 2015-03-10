@@ -7,3 +7,6 @@
 TODO:
   Delete method
 
+Line by line translation in C - https://github.com/freepk/redblack/blob/master/test/test1.c and some competitors:
+  - http://algolist.manual.ru non-recursive, with parent pointers: https://github.com/freepk/redblack/blob/master/test/test2.c
+  - http://www.eternallyconfuzzled.com/tuts/datastructures/jsw_tut_rbtree.aspx, non-recursive, without parent pointers and code duplicates: https://github.com/freepk/redblack/blob/master/test/test3.c
