@@ -39,6 +39,7 @@ func (s *stack) pop() (*node, direction) {
 }
 
 func (s *stack) rewind(n *node, x int) *node {
+	s.c = 0
 	for n != nil {
 		switch {
 		case n.x > x:
