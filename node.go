@@ -44,6 +44,7 @@ func (n *node) insert(x int) (*node, bool) {
 				p, pd = s.pop()
 				continue
 			}
+			return n, true
 		}
 		if gd != pd {
 			p = p.rotate(pd)
