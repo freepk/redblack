@@ -3,7 +3,7 @@
 ##Properties:
   - Non-recursive
   - Without parent pointers
-  - Without symmetric code duplicates, eg there are no leftRotate and rightRotate, just sigle rotate method with direction as parameter.
+  - Without symmetric code duplicates, eg there are no leftRotate and rightRotate, just single rotate method with direction as parameter.
 
 ##TODO:
   - Delete method
