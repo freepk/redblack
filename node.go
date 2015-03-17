@@ -41,7 +41,7 @@ func (n *node) insert(x int) (*node, bool) {
 		case z.x > x:
 			s.push(z, left)
 			z = z.l[left]
-		case n.x < x:
+		case z.x < x:
 			s.push(z, right)
 			z = z.l[right]
 		default:
@@ -80,4 +80,18 @@ func (n *node) insert(x int) (*node, bool) {
 		}
 	}
 	return n, true
+}
+
+func (n *node) search(x int) *node {
+	for n != nil {
+		switch {
+		case n.x > x:
+			n = n.l[left]
+		case n.x < x:
+			n = n.l[right]
+		default:
+			return n
+		}
+	}
+	return nil
 }
