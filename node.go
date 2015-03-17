@@ -5,6 +5,13 @@ const (
 	red
 )
 
+const (
+	left direction = iota
+	right
+)
+
+type direction uint8
+
 type color uint8
 
 type node struct {
@@ -27,9 +34,19 @@ func (n *node) rotate(d direction) *node {
 }
 
 func (n *node) insert(x int) (*node, bool) {
-	s := newStack()
-	if t := s.rewind(n, x); t != nil {
-		return n, false
+	s := new(stack)
+	z := n
+	for z != nil {
+		switch {
+		case z.x > x:
+			s.push(z, left)
+			z = z.l[left]
+		case n.x < x:
+			s.push(z, right)
+			z = z.l[right]
+		default:
+			return n, false
+		}
 	}
 	p, pd := s.pop()
 	p.l[pd] = newNode(x, red)

@@ -5,7 +5,7 @@ import (
 )
 
 func TestNewStack(t *testing.T) {
-	s := newStack()
+	s := new(stack)
 	s.push(newNode(10, 1), left)
 	s.push(newNode(20, 1), left)
 	n0, _ := s.pop()
@@ -16,7 +16,7 @@ func TestNewStack(t *testing.T) {
 }
 
 func BenchmarkStackPushAndPop(b *testing.B) {
-	s := newStack()
+	s := new(stack)
 	for i := 0; i < b.N; i++ {
 		switch (i / stackSize) % 2 {
 		case 0:
