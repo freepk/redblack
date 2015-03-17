@@ -22,13 +22,8 @@ func BenchmarkInsSeq(b *testing.B) {
 }
 
 func BenchmarkInsRnd(b *testing.B) {
-	f := false
-	c := 0
 	n := newNode(0, black)
 	for i := 0; i < b.N; i++ {
-		if n, f = n.insert(rand.Int()); f == true {
-			c++
-		}
+		n, _ = n.insert(rand.Int())
 	}
-	b.Logf("b.N: %d, c: %d", b.N, c)
 }
