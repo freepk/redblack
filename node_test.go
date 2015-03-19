@@ -6,13 +6,8 @@ import (
 )
 
 func TestInsert(t *testing.T) {
-	n := newNode(0, black)
-	for i := 0; i <= 10000; i++ {
-		n, _ = n.insert(rand.Int())
-	}
-	n, _ = n.insert(0)
-	n, _ = n.insert(0)
-	if isValid(n) == 0 {
+	n := insertSeq(1000)
+	if h := isValid(n); h == 0 {
 		t.Fail()
 	}
 }
@@ -42,7 +37,6 @@ func BenchmarkInsRnd(b *testing.B) {
 }
 
 func BenchmarkSearchSeq(b *testing.B) {
-	b.N = 1000000
 	n := insertSeq(b.N)
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
