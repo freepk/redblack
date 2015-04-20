@@ -95,3 +95,6 @@ func (n *node) search(x int) *node {
 	}
 	return nil
 }
+
+func (n *node) dummy() {
+}

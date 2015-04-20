@@ -6,11 +6,13 @@ import (
 )
 
 var (
-	sample *node
+	sampleSeq *node
+	sampleRnd *node
 )
 
 func init() {
-	sample = fillSeq(10000000)
+	sampleSeq = fillSeq(1000000)
+	sampleRnd = fillRnd(1000000)
 }
 
 func fillSeq(n int) *node {
@@ -44,8 +46,14 @@ func BenchmarkInsRnd(b *testing.B) {
 	fillRnd(b.N)
 }
 
-func BenchmarkSearch(b *testing.B) {
+func BenchmarkSearchSeq(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = sample.search(rand.Int())
+		_ = sampleSeq.search(i)
+	}
+}
+
+func BenchmarkSearchRnd(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = sampleRnd.search(rand.Int())
 	}
 }
