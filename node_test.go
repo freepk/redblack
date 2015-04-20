@@ -5,41 +5,47 @@ import (
 	"testing"
 )
 
-func TestInsert(t *testing.T) {
-	n := insertSeq(1000)
-	if h := isValid(n); h == 0 {
+var (
+	sample *node
+)
+
+func init() {
+	sample = fillSeq(10000000)
+}
+
+func fillSeq(n int) *node {
+	x := newNode(0, black)
+	for i := 0; i < n; i++ {
+		x, _ = x.insert(i)
+	}
+	return x
+}
+
+func fillRnd(n int) *node {
+	x := newNode(0, black)
+	for i := 0; i < n; i++ {
+		x, _ = x.insert(rand.Int())
+	}
+	return x
+}
+
+func TestCommon(t *testing.T) {
+	x := fillRnd(10000)
+	if isValid(x) == 0 {
 		t.Fail()
 	}
 }
 
-func insertSeq(c int) *node {
-	n := newNode(0, black)
-	for i := 0; i < c; i++ {
-		n, _ = n.insert(i)
-	}
-	return n
-}
-
-func insertRnd(c int) *node {
-	n := newNode(0, black)
-	for i := 0; i < c; i++ {
-		n, _ = n.insert(rand.Int())
-	}
-	return n
-}
-
 func BenchmarkInsSeq(b *testing.B) {
-	insertSeq(b.N)
+	fillSeq(b.N)
 }
 
 func BenchmarkInsRnd(b *testing.B) {
-	insertRnd(b.N)
+	fillRnd(b.N)
 }
 
-func BenchmarkSearchSeq(b *testing.B) {
-	n := insertSeq(b.N)
-	b.ResetTimer()
+func BenchmarkSearch(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		n.search(i)
+		_ = sample.search(rand.Int())
 	}
 }
