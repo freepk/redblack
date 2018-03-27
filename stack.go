@@ -1,28 +1,19 @@
 package redblack
 
-const (
-	stackSize = 64
-)
-
-type elem struct {
-	n *node
-	d direction
-}
-
 type stack struct {
-	c uint8
-	e [stackSize]elem
+	c int
+	n [stackSize]*node
+	d [stackSize]direction
 }
 
 func (s *stack) push(n *node, d direction) {
-	e := &s.e[s.c]
-	e.n = n
-	e.d = d
+	c := s.c
 	s.c++
+	s.n[c] = n
+	s.d[c] = d
 }
 
 func (s *stack) pop() (*node, direction) {
 	s.c--
-	e := &s.e[s.c]
-	return e.n, e.d
+	return s.n[s.c], s.d[s.c]
 }

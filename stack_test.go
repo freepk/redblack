@@ -5,18 +5,21 @@ import (
 )
 
 func TestNewStack(t *testing.T) {
-	s := new(stack)
-	s.push(newNode(10, 1), left)
-	s.push(newNode(20, 1), left)
-	n0, _ := s.pop()
-	n1, _ := s.pop()
-	if n0.x != 20 || n1.x != 10 {
+	s := stack{}
+	s.push(newNode(10, red), left)
+	s.push(newNode(20, black), right)
+	n, d := s.pop()
+	if n.k != 20 || n.c != black || d != right {
+		t.Fail()
+	}
+	n, d = s.pop()
+	if n.k != 10 || n.c != red || d != left {
 		t.Fail()
 	}
 }
 
 func BenchmarkStackPushAndPop(b *testing.B) {
-	s := new(stack)
+	s := stack{}
 	for i := 0; i < b.N; i++ {
 		switch (i / stackSize) % 2 {
 		case 0:
