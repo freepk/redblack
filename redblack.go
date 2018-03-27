@@ -116,10 +116,3 @@ func height(n *node) int {
 	}
 	return 0
 }
-
-func (t *Tree) height() int {
-	if t.r == nil {
-		return 0
-	}
-	return height(t.r)
-}
