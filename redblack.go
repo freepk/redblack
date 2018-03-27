@@ -19,9 +19,11 @@ func NewTree() *Tree {
 }
 
 func rotate(n *node, d direction) *node {
-	f := ^d & 1
-	a := n.x[d]
-	b := a.x[f]
+	var f direction
+	var a, b *node
+	f = ^d & 1
+	a = n.x[d]
+	b = a.x[f]
 	a.x[f] = n
 	n.x[d] = b
 	return a
@@ -82,10 +84,12 @@ func (t *Tree) Insert(k int) {
 }
 
 func height(n *node) int {
+	var a, b *node
+	var c, d int
 	if n == nil {
 		return 1
 	}
-	a := n.x[left]
+	a = n.x[left]
 	if a != nil {
 		if a.c == red && n.c == red {
 			return 0
@@ -94,7 +98,7 @@ func height(n *node) int {
 			return 0
 		}
 	}
-	b := n.x[right]
+	b = n.x[right]
 	if b != nil {
 		if b.c == red && n.c == red {
 			return 0
@@ -103,8 +107,8 @@ func height(n *node) int {
 			return 0
 		}
 	}
-	c := height(a)
-	d := height(b)
+	c = height(a)
+	d = height(b)
 	if (c != 0) && (d != 0) {
 		if c != d {
 			return 0
