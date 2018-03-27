@@ -18,8 +18,13 @@ func NewTree() *Tree {
 	return &Tree{}
 }
 
-func (t *Tree) Root() *node {
-	return t.r
+func rotate(n *node, d direction) *node {
+	f := ^d & 1
+	a := n.x[d]
+	b := a.x[f]
+	a.x[f] = n
+	n.x[d] = b
+	return a
 }
 
 func (t *Tree) Insert(k int) {
@@ -76,22 +81,6 @@ func (t *Tree) Insert(k int) {
 	}
 }
 
-func (t *Tree) Height() int {
-	if t.r == nil {
-		return 0
-	}
-	return height(t.r)
-}
-
-func rotate(n *node, d direction) *node {
-	f := ^d & 1
-	a := n.x[d]
-	b := a.x[f]
-	a.x[f] = n
-	n.x[d] = b
-	return a
-}
-
 func height(n *node) int {
 	if n == nil {
 		return 1
@@ -126,4 +115,11 @@ func height(n *node) int {
 		return c + 1
 	}
 	return 0
+}
+
+func (t *Tree) height() int {
+	if t.r == nil {
+		return 0
+	}
+	return height(t.r)
 }
