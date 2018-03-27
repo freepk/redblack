@@ -22,42 +22,19 @@ func benchmarkTreeRnd(n int) *Tree {
 }
 
 func TestTreeCommon(t *testing.T) {
-	ts := benchmarkTreeSeq(10000)
-	if ts.Height() == 0 {
+	var tr *Tree
+	tr = benchmarkTreeSeq(10000)
+	if height(tr.r) == 0 {
 		t.Fail()
 	}
-	tr := benchmarkTreeRnd(10000)
-	if tr.Height() == 0 {
+	tr = benchmarkTreeRnd(10000)
+	if height(tr.r) == 0 {
 		t.Fail()
 	}
 }
 
 func BenchmarkTreeInsSeq(b *testing.B) {
 	benchmarkTreeSeq(b.N)
-}
-
-func BenchmarkTreeInsSeq100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		benchmarkTreeSeq(100)
-	}
-}
-
-func BenchmarkTreeInsSeq1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		benchmarkTreeSeq(1000)
-	}
-}
-
-func BenchmarkTreeInsSeq10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		benchmarkTreeSeq(10000)
-	}
-}
-
-func BenchmarkTreeInsSeq100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		benchmarkTreeSeq(100000)
-	}
 }
 
 func BenchmarkTreeInsRnd(b *testing.B) {
@@ -119,7 +96,6 @@ func TestNodeRotate(t *testing.T) {
 	if height(n) != 3 {
 		t.Fail()
 	}
-
 }
 
 func BenchmarkNodeRotate(b *testing.B) {
